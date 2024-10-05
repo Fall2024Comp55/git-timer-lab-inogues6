@@ -42,7 +42,9 @@ public class DodgeBall extends GraphicsProgram implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		numTimes++;
 		moveAllBallsOnce();
+		moveAllEnemiesOnce();
 		if(numTimes % 40 == 0) {
 		    addAnEnemy();
 		}
@@ -92,6 +94,13 @@ public class DodgeBall extends GraphicsProgram implements ActionListener {
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+	}
+	
+	private void moveAllEnemiesOnce(){
+		for(GRect enemy:enemies){
+			int randomYMove = rgen.nextInt(-2,2);
+			enemy.move(0, randomYMove);
+		}
 	}
 	
 	public static void main(String args[]) {
